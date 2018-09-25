@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  /*background-image: url(https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX7215437.jpg);*/
+}
+
+img {
+  position: absolute;
+  max-width: 80%;
+  top: 10%;
+  left: 10%;
+  background-color: white;
+  padding: 2px;
+  box-shadow: 0 0 2vh black;
+}
+
+img:empty
+{
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation: portrait) {
+  img { max-width: 90%; }
+}
+
+@media screen and (orientation: landscape) {
+  img { max-height: 90%; }
+}
+
+#link {
+  float: right;
+  font-size: .9em;
+  opacity: .6;
+  text-decoration: none;
+  color: black;
+  background-color: gray;
+  padding: 7px;
+  transition: .7s;
+}
+
+#link:hover {
+  opacity: 1;
+  color: white;
+  transition: .3s;
+}
