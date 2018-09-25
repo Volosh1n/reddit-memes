@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       posts: [],
       currentImg: null,
+      previousImg: null,
       currentLink: ''
     };
     this.randomImage = this.randomImage.bind(this);
@@ -22,6 +23,7 @@ class App extends Component {
         this.setState({ posts: posts.data.children });
         this.setState({
           currentImg: this.state.posts[1].data.url,
+          previousImg: this.state.posts[1].data.url,
           currentLink: 'https://reddit.com' + this.state.posts[1].data.permalink
         });
       })
@@ -51,6 +53,7 @@ class App extends Component {
       img = (img.endsWith(".jpg") || img.endsWith(".png")) ? img : (img + '.jpg');
     } while(/comments/.test(img) === true)
     this.setState({
+      previousImg: this.state.currentImg,
       currentImg: img,
       currentLink: link
     });
@@ -61,6 +64,7 @@ class App extends Component {
       <div>
         <a href={ this.state.currentLink } id="link" target="_blank" rel="noopener noreferrer">comments</a>
         <a href={ this.state.currentImg } id="link" target="_blank" rel="noopener noreferrer">direct link</a>
+        <a href={ this.state.previousImg } id="link" target="_blank" rel="noopener noreferrer">previous pic</a>
         <a onClick={ this.randomImage }>
           <img src={ this.state.currentImg } alt="" />
         </a>

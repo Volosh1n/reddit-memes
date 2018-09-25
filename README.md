@@ -1,1 +1,1 @@
-goodsprings.github.io/randompics
+Just tap on pics and watch
