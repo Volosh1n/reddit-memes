@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  /*background-image: url(https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX7215437.jpg);*/
+  background-color: #fafafa;
 }
 
 img {
@@ -10,7 +10,8 @@ img {
   left: 10%;
   background-color: white;
   padding: 2px;
-  box-shadow: 0 0 2vh black;
+  box-shadow: 0 0 1vh black;
+  border-radius: 5px;
 }
 
 img:empty
@@ -25,25 +26,39 @@ img:empty
 }
 
 @media screen and (orientation: portrait) {
-  img { max-width: 90%; }
+  img {
+    max-height: 80%;
+    max-width: 90%;
+  }
 }
 
 @media screen and (orientation: landscape) {
   img { max-height: 90%; }
 }
 
-#link {
-  float: right;
+#links {
+  display: table;
+  width: 100%;
+  max-width: 500px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.link {
+  text-align: center;
+  font-family: Arial;
+  display: table-cell;
   font-size: .9em;
   opacity: .6;
   text-decoration: none;
   color: black;
   background-color: gray;
-  padding: 7px;
+  padding: 5px;
   transition: .7s;
 }
 
-#link:hover {
+.link:hover {
   opacity: 1;
   color: white;
   transition: .3s;

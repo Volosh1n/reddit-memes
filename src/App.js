@@ -62,9 +62,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <a href={ this.state.currentLink } id="link" target="_blank" rel="noopener noreferrer">comments</a>
-        <a href={ this.state.currentImg } id="link" target="_blank" rel="noopener noreferrer">direct link</a>
-        <a href={ this.state.previousImg } id="link" target="_blank" rel="noopener noreferrer">previous pic</a>
+        <div id="links">
+          <a href={ this.state.previousImg } class="link" target="_blank" rel="noopener noreferrer">previous pic</a>
+          <a href={ this.state.currentLink } class="link" target="_blank" rel="noopener noreferrer">comments</a>
+          <a href={ this.state.currentImg } class="link" target="_blank" rel="noopener noreferrer">direct link</a>
+        </div>
         <a onClick={ this.randomImage }>
           <img src={ this.state.currentImg } alt="" />
         </a>
