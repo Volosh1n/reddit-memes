@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       posts: [],
+      currentPost: null,
       currentImg: null,
       previousImg: null,
       currentLink: ''
@@ -22,10 +23,11 @@ class App extends Component {
     fetch(URL).then(res => res.json())
       .then(posts => {
         this.setState({ posts: posts.data.children });
+        this.setState({ currentPost: this.state.posts[1].data });
         this.setState({
-          currentImg: this.state.posts[1].data.url,
-          previousImg: this.state.posts[1].data.url,
-          currentLink: 'https://reddit.com' + this.state.posts[1].data.permalink
+          currentImg: this.state.currentPost.url,
+          previousImg: this.state.currentPost.url,
+          currentLink: 'https://reddit.com' + this.state.currentPost.permalink
         });
       })
     fetch(URL2).then(res => res.json())
@@ -47,14 +49,16 @@ class App extends Component {
   randomImage() {
     do {
       var random = Math.floor(Math.random() * this.state.posts.length);
-      var img = this.state.posts[random].data.url;
-      var link = 'https://reddit.com' + this.state.posts[random].data.permalink;
+      var post = this.state.posts[random].data;
+      this.setState({ currentPost: post });
+      var img = post.url;
+      var link = 'https://reddit.com' + post.permalink;
       if (/v.redd.it/.test(img))
         continue;
       img = (img.endsWith(".jpg") || img.endsWith(".png")) ? img : (img + '.jpg');
     } while(/comments/.test(img) === true)
     this.setState({
-      previousImg: this.state.currentImg,
+      previousImg: this.state.currentPost,
       currentImg: img,
       currentLink: link
     });
@@ -71,8 +75,10 @@ class App extends Component {
   }
 
   prevPic() {
+    var link = 'https://reddit.com' + this.state.previousImg.permalink;
     this.setState({
-      currentImg: this.state.previousImg
+      currentImg: this.state.previousImg.url,
+      currentLink: link
     });
     document.getElementById('prev-select').style.opacity = "0";
   }
