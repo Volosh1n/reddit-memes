@@ -59,13 +59,22 @@ class App extends Component {
     });
   }
 
+  setNightmode() {
+    document.body.classList.toggle('nightmode');
+    if (document.getElementById('night-toggle').innerHTML === 'daymode')
+      document.getElementById('night-toggle').innerHTML = 'nightmode';
+    else
+      document.getElementById('night-toggle').innerHTML = 'daymode';
+  }
+
   render() {
     return (
       <div>
         <div id="links">
-          <a href={ this.state.previousImg } class="link" target="_blank" rel="noopener noreferrer">previous pic</a>
-          <a href={ this.state.currentLink } class="link" target="_blank" rel="noopener noreferrer">comments</a>
-          <a href={ this.state.currentImg } class="link" target="_blank" rel="noopener noreferrer">direct link</a>
+          <a href={ this.state.previousImg } className="link" target="_blank" rel="noopener noreferrer">prev pic</a>
+          <a href={ this.state.currentImg } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
+          <a href={ this.state.currentLink } className="link" target="_blank" rel="noopener noreferrer">comments</a>
+          <a onClick={ this.setNightmode } id="night-toggle" className="link" style={{cursor: 'pointer'}}>nightmode</a>
         </div>
         <a onClick={ this.randomImage }>
           <img src={ this.state.currentImg } alt="" />

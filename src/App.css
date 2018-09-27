@@ -1,6 +1,20 @@
 body {
+  --color-page-background: #fafafa;
+  --color-font: black;
+}
+
+.nightmode {
+  --color-page-background: #202020;
+  --color-font: white;
+}
+
+* {
+    transition: all .3s ease-in;
+}
+
+body {
   margin: 0;
-  background-color: #fafafa;
+  background-color: var(--color-page-background);
 }
 
 img {
@@ -52,14 +66,12 @@ img:empty
   font-size: .9em;
   opacity: .6;
   text-decoration: none;
-  color: black;
+  color: var(--color-font);
   background-color: gray;
   padding: 5px;
-  transition: .7s;
 }
 
 .link:hover {
   opacity: 1;
   color: white;
-  transition: .3s;
 }
