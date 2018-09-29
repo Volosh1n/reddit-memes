@@ -13,7 +13,7 @@ class App extends Component {
       currentPost: null,
       currentImg: null,
       previousImg: null,
-      currentLink: ''
+      commentsLink: ''
     };
     this.randomImage = this.randomImage.bind(this);
     this.prevPic = this.prevPic.bind(this);
@@ -27,7 +27,7 @@ class App extends Component {
         this.setState({
           currentImg: this.state.currentPost.url,
           previousImg: this.state.currentPost.url,
-          currentLink: 'https://reddit.com' + this.state.currentPost.permalink
+          commentsLink: 'https://reddit.com' + this.state.currentPost.permalink
         });
       })
     fetch(URL2).then(res => res.json())
@@ -47,23 +47,24 @@ class App extends Component {
   }
 
   randomImage() {
+    var image = "";
     do {
       var random = Math.floor(Math.random() * this.state.posts.length);
       var post = this.state.posts[random].data;
       this.setState({ currentPost: post });
-      var img = post.url;
-      var link = 'https://reddit.com' + post.permalink;
-      if (/v.redd.it/.test(img))
+      if ((/jpg/.test(post.url)) || (/png/.test(post.url)))
+        image = post.url;
+      else
         continue;
-      img = (img.endsWith(".jpg") || img.endsWith(".png")) ? img : (img + '.jpg');
-    } while(/comments/.test(img) === true)
+      var link = 'https://reddit.com' + post.permalink;
+    } while(image === "")
     this.setState({
       previousImg: this.state.currentPost,
-      currentImg: img,
-      currentLink: link
+      currentImg: image,
+      commentsLink: link
     });
-    if(document.getElementById('prev-select').style.opacity !== ".6");
-      document.getElementById('prev-select').style.opacity = ".6"
+    document.getElementsByTagName('h3')[0].style.opacity = 0;
+    document.getElementById('prev-select').style.opacity = ".6"
   }
 
   setNightmode() {
@@ -78,7 +79,7 @@ class App extends Component {
     var link = 'https://reddit.com' + this.state.previousImg.permalink;
     this.setState({
       currentImg: this.state.previousImg.url,
-      currentLink: link
+      commentsLink: link
     });
     document.getElementById('prev-select').style.opacity = "0";
   }
@@ -86,10 +87,11 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h3>Click on the picture to go further</h3>
         <div id="links">
           <a onClick={ this.prevPic } id="prev-select" className="link" style={{cursor: 'pointer'}}>prev pic</a>
           <a href={ this.state.currentImg } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
-          <a href={ this.state.currentLink } className="link" target="_blank" rel="noopener noreferrer">comments</a>
+          <a href={ this.state.commentsLink } className="link" target="_blank" rel="noopener noreferrer">comments</a>
           <a onClick={ this.setNightmode } id="night-toggle" className="link" style={{cursor: 'pointer'}}>nightmode</a>
         </div>
         <a onClick={ this.randomImage }>
