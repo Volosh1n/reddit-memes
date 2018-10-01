@@ -3,7 +3,7 @@ import './App.css';
 
 const URL = "https://www.reddit.com/r/memes.json?limit=100"
 const URL2 = "https://www.reddit.com/r/dankmemes.json?limit=100"
-const URL3 = "https://www.reddit.com/r/FreshMemes.json?limit=100"
+const URL3 = "https://www.reddit.com/r/MemeEconomy.json?limit=100"
 
 class App extends Component {
   constructor(props) {
