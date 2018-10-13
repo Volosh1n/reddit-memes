@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Links from './components/Links';
 
 const URL = "https://www.reddit.com/r/memes.json?limit=100"
 const URL2 = "https://www.reddit.com/r/dankmemes.json?limit=100"
@@ -88,12 +89,7 @@ class App extends Component {
     return (
       <div>
         <h3>Click on the picture to go further</h3>
-        <div id="links">
-          <a onClick={ this.prevPic } id="prev-select" className="link" style={{cursor: 'pointer'}}>prev pic</a>
-          <a href={ this.state.currentImg } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
-          <a href={ this.state.commentsLink } className="link" target="_blank" rel="noopener noreferrer">comments</a>
-          <a onClick={ this.setNightmode } id="night-toggle" className="link" style={{cursor: 'pointer'}}>nightmode</a>
-        </div>
+        <Links prevPic={this.prevPic} currentImg={this.state.currentImg} commentsLink={this.state.commentsLink} setNightmode={this.setNightmode} />
         <a onClick={ this.randomImage }>
           <img src={ this.state.currentImg } alt="" />
         </a>
