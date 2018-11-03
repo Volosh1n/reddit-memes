@@ -68,14 +68,6 @@ class App extends Component {
     document.getElementById('prev-select').style.opacity = ".6"
   }
 
-  setNightmode() {
-    document.body.classList.toggle('nightmode');
-    if (document.getElementById('night-toggle').innerHTML === 'daymode')
-      document.getElementById('night-toggle').innerHTML = 'nightmode';
-    else
-      document.getElementById('night-toggle').innerHTML = 'daymode';
-  }
-
   prevPic() {
     var link = 'https://reddit.com' + this.state.previousImg.permalink;
     this.setState({
@@ -89,7 +81,7 @@ class App extends Component {
     return (
       <div>
         <h3>Click on the picture to go further</h3>
-        <Links prevPic={this.prevPic} currentImg={this.state.currentImg} commentsLink={this.state.commentsLink} setNightmode={this.setNightmode} />
+        <Links prevPic={this.prevPic} currentImg={this.state.currentImg} commentsLink={this.state.commentsLink} />
         <a onClick={ this.randomImage }>
           <img src={ this.state.currentImg } alt="" />
         </a>
