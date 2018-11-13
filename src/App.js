@@ -48,20 +48,20 @@ class App extends Component {
   }
 
   randomImage() {
-    var image = "";
+    var imageLink = "";
     do {
       var random = Math.floor(Math.random() * this.state.posts.length);
       var post = this.state.posts[random].data;
-      this.setState({ currentPost: post });
       if ((/jpg/.test(post.url)) || (/png/.test(post.url)))
-        image = post.url;
+        imageLink = post.url;
       else
         continue;
       var link = 'https://reddit.com' + post.permalink;
-    } while(image === "")
+    } while(imageLink === "")
     this.setState({
+      currentPost: post,
+      currentImg: imageLink,
       previousImg: this.state.currentPost,
-      currentImg: image,
       commentsLink: link
     });
     document.getElementsByTagName('h3')[0].style.opacity = 0;
@@ -81,7 +81,9 @@ class App extends Component {
     return (
       <div>
         <h3>Click on the picture to go further</h3>
-        <Links prevPic={this.prevPic} currentImg={this.state.currentImg} commentsLink={this.state.commentsLink} />
+        <Links prevPic={this.prevPic}
+               currentImg={this.state.currentImg}
+               commentsLink={this.state.commentsLink} />
         <a onClick={ this.randomImage }>
           <img src={ this.state.currentImg } alt="" />
         </a>
