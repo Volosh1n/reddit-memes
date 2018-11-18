@@ -18,6 +18,7 @@ class App extends Component {
     };
     this.randomImage = this.randomImage.bind(this);
     this.prevPic = this.prevPic.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,11 @@ class App extends Component {
           newStateArray.push(posts3.data.children[index]);
         this.setState({ posts: newStateArray });
       })
+    document.addEventListener("keydown", this.handleKeyDown);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handleKeyDown);
   }
 
   randomImage() {
@@ -66,6 +72,16 @@ class App extends Component {
     });
     document.getElementsByTagName('h3')[0].style.opacity = 0;
     document.getElementById('prev-select').style.opacity = ".6"
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 39) {
+      console.log('next');
+      this.randomImage();
+    } else if (e.keyCode === 37) {
+      console.log('prev');
+      this.prevPic();
+    }
   }
 
   prevPic() {
