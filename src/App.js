@@ -75,13 +75,10 @@ class App extends Component {
   }
 
   handleKeyDown(e) {
-    if (e.keyCode === 39) {
-      console.log('next');
+    if (e.key === 'ArrowRight')
       this.randomImage();
-    } else if (e.keyCode === 37) {
-      console.log('prev');
+    else if (e.key === 'ArrowLeft')
       this.prevPic();
-    }
   }
 
   prevPic() {
