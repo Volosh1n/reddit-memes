@@ -93,12 +93,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h3>Click on the picture to go further</h3>
+        <h3>Click on the picture or use right arrow to go further</h3>
         <Links prevPic={this.prevPic}
                currentImg={this.state.currentImg}
                commentsLink={this.state.commentsLink} />
         <a onClick={ this.randomImage }>
-          <img src={ this.state.currentImg } alt="" />
+          <img src={ this.state.currentImg } alt="" style={{zIndex:-1}} />
         </a>
       </div>
     );
