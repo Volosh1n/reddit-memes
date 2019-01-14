@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Links from './components/Links';
 
-const URL = "https://www.reddit.com/r/memes.json?limit=100"
+const MAIN_URL = "https://www.reddit.com/r/memes.json?limit=100"
 const URL2 = "https://www.reddit.com/r/dankmemes.json?limit=100"
 const URL3 = "https://www.reddit.com/r/bikinibottomtwitter.json?limit=100"
 
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(URL).then(res => res.json())
+    fetch(MAIN_URL).then(res => res.json())
       .then(posts => {
         this.setState({ posts: posts.data.children });
         this.setState({ currentPost: this.state.posts[1].data });
@@ -32,25 +32,23 @@ class App extends Component {
           commentsLink: 'https://reddit.com' + this.state.currentPost.permalink
         });
       })
-    fetch(URL2).then(res => res.json())
-      .then(posts2 => {
-        var newStateArray = this.state.posts.slice();
-        for (var index = 0; index < posts2.data.children.length; index++)
-          newStateArray.push(posts2.data.children[index]);
-        this.setState({ posts: newStateArray });
-      })
-    fetch(URL3).then(res => res.json())
-      .then(posts3 => {
-        var newStateArray = this.state.posts.slice();
-        for (var index = 0; index < posts3.data.children.length; index++)
-          newStateArray.push(posts3.data.children[index]);
-        this.setState({ posts: newStateArray });
-      })
+    this.fecthAnother(URL2);
+    this.fecthAnother(URL3);
     document.addEventListener("keydown", this.handleKeyDown);
   }
 
   componentWillUnmount(){
     document.removeEventListener("keydown", this.handleKeyDown);
+  }
+
+  fecthAnother(url) {
+    fetch(url).then(res => res.json())
+      .then(posts => {
+        var newStateArray = this.state.posts.slice();
+        for (var index = 0; index < posts.data.children.length; index++)
+          newStateArray.push(posts.data.children[index]);
+        this.setState({ posts: newStateArray });
+      })
   }
 
   randomImage() {
