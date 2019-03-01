@@ -1,15 +1,17 @@
 :root {
   --color-page-background: #fafafa;
   --color-font: black;
+  --img-opacity: 1;
 }
 
 .nightmode {
   --color-page-background: #202020;
   --color-font: white;
+  --img-opacity: .6;
 }
 
 * {
-    transition: all .3s ease-in;
+    transition: all .3s ease-in-out;
 }
 
 body {
@@ -34,6 +36,7 @@ img {
   padding: 2px;
   box-shadow: 0 0 1vh black;
   border-radius: 5px;
+  opacity: var(--img-opacity);
 }
 
 img:empty
