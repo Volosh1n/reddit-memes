@@ -77,10 +77,10 @@ class App extends Component {
     return (
       <div>
         <div id="links">
-          <a onClick={ this.prevPic } id="prev-select" className="link" style={{cursor: 'pointer'}}>prev pic</a>
+          <a onClick={ this.prevPic } id="prev-select" className="link service-link">prev pic</a>
           <a href={ this.currentPost().url } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
           <a href={ this.commentsLink() } className="link" target="_blank" rel="noopener noreferrer">comments</a>
-          <a onClick={ this.setNightmode } id="night-toggle" className="link" style={{cursor: 'pointer'}}>nightmode</a>
+          <a onClick={ this.setNightmode } id="night-toggle" className="link service-link">nightmode</a>
         </div>
         <a onClick={ this.nextPic }>
           <img src={ this.currentPost().url } alt="img" style={{zIndex:-1}} />

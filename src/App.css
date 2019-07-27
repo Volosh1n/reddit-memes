@@ -80,9 +80,14 @@ img:empty
   color: var(--color-font);
   background-color: gray;
   padding: 5px;
+  user-select: none;
 }
 
 .link:hover {
   opacity: 1;
   color: white;
+}
+
+.service-link {
+  cursor: 'pointer';
 }
