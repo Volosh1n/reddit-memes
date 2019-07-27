@@ -31,14 +31,15 @@ class App extends Component {
   }
 
   addToStatePosts(newPosts) {
-    this.setState({ posts: this.state.posts.concat(newPosts) });
+    let filtered = newPosts.filter(function(value){
+      return value.data.url.match(/\.(jpeg|jpg|png)$/) != null;
+    });
+    this.setState({ posts: this.state.posts.concat(filtered) });
   }
 
   handleKeyDown(event) {
-    if (event.key === 'ArrowRight')
-      this.nextPic();
-    if (event.key === 'ArrowLeft')
-      this.prevPic();
+    if (event.key === 'ArrowRight') this.nextPic();
+    if (event.key === 'ArrowLeft') this.prevPic();
   }
 
   nextPic() {
