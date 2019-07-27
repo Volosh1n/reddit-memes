@@ -1,39 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
-import Links from './components/Links';
 
-const MAIN_URL = "https://www.reddit.com/r/memes.json?limit=100"
-const URL2 = "https://www.reddit.com/r/dankmemes.json?limit=100"
-const URL3 = "https://www.reddit.com/r/me_irl.json?limit=100"
+const SUBREDDITS = ['memes', 'dankmemes', 'me_irl'];
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      currentPost: null,
-      currentImg: null,
-      previousImg: null,
-      commentsLink: ''
+      currentPostIndex: 0
     };
-    this.randomImage = this.randomImage.bind(this);
+    this.nextPic = this.nextPic.bind(this);
     this.prevPic = this.prevPic.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.commentsLink = this.commentsLink.bind(this);
   }
 
-  componentDidMount() {
-    fetch(MAIN_URL).then(res => res.json())
-      .then(posts => {
-        this.setState({ posts: posts.data.children });
-        this.setState({ currentPost: this.state.posts[1].data });
-        this.setState({
-          currentImg: this.state.currentPost.url,
-          previousImg: this.state.currentPost.url,
-          commentsLink: 'https://reddit.com' + this.state.currentPost.permalink
-        });
-      })
-    this.fecthAnother(URL2);
-    this.fecthAnother(URL3);
+  componentWillMount() {
+    SUBREDDITS.forEach(subreddit => {
+      let url = 'https://www.reddit.com/r/' + subreddit + '.json?limit=100';
+      fetch(url).then(res => res.json()).then(posts => {
+        this.addToStatePosts(posts.data.children.sort(() => 0.5 - Math.random()));
+      });
+    });
     document.addEventListener("keydown", this.handleKeyDown);
   }
 
@@ -41,62 +30,59 @@ class App extends Component {
     document.removeEventListener("keydown", this.handleKeyDown);
   }
 
-  fecthAnother(url) {
-    fetch(url).then(res => res.json())
-      .then(posts => {
-        var newStateArray = this.state.posts.slice();
-        for (var index = 0; index < posts.data.children.length; index++)
-          newStateArray.push(posts.data.children[index]);
-        this.setState({ posts: newStateArray });
-      })
+  addToStatePosts(newPosts) {
+    this.setState({ posts: this.state.posts.concat(newPosts) });
   }
 
-  randomImage() {
-    var imageLink = "";
-    do {
-      var random = Math.floor(Math.random() * this.state.posts.length);
-      var post = this.state.posts[random].data;
-      if (post.url.match(/\.(jpeg|jpg|png)$/) != null)
-        imageLink = post.url;
-      else
-        continue;
-      var link = 'https://reddit.com' + post.permalink;
-    } while(imageLink === "")
-    this.setState({
-      currentPost: post,
-      currentImg: imageLink,
-      previousImg: this.state.currentPost,
-      commentsLink: link
-    });
-    document.getElementsByTagName('h3')[0].style.opacity = 0;
-    document.getElementById('prev-select').style.opacity = ".6"
-  }
-
-  handleKeyDown(e) {
-    if (e.key === 'ArrowRight')
-      this.randomImage();
-    else if (e.key === 'ArrowLeft')
+  handleKeyDown(event) {
+    if (event.key === 'ArrowRight')
+      this.nextPic();
+    if (event.key === 'ArrowLeft')
       this.prevPic();
   }
 
+  nextPic() {
+    if(this.state.currentPostIndex + 1 !== this.state.posts.length)
+      this.setState({ currentPostIndex: this.state.currentPostIndex + 1 });
+    else
+      this.setState({ currentPostIndex: 0 });
+  }
+
   prevPic() {
-    var link = 'https://reddit.com' + this.state.previousImg.permalink;
-    this.setState({
-      currentImg: this.state.previousImg.url,
-      commentsLink: link
-    });
-    document.getElementById('prev-select').style.opacity = "0";
+    if(this.state.currentPostIndex - 1 >= 0)
+      this.setState({ currentPostIndex: this.state.currentPostIndex - 1 });
+  }
+
+  currentPost() {
+    return this.state.posts[this.state.currentPostIndex].data;
+  }
+
+  setNightmode() {
+    document.body.classList.toggle('nightmode');
+    if (document.getElementById('night-toggle').innerHTML === 'daymode')
+      document.getElementById('night-toggle').innerHTML = 'nightmode';
+    else
+      document.getElementById('night-toggle').innerHTML = 'daymode';
+  }
+
+  commentsLink() {
+    return 'https://reddit.com' + this.currentPost().permalink;
   }
 
   render() {
+    if(!this.state.posts.length) {
+      return  <div />
+    }
     return (
       <div>
-        <h3>Click on the picture or use right arrow to go further</h3>
-        <Links prevPic={this.prevPic}
-               currentImg={this.state.currentImg}
-               commentsLink={this.state.commentsLink} />
-        <a onClick={ this.randomImage }>
-          <img src={ this.state.currentImg } alt="" style={{zIndex:-1}} />
+        <div id="links">
+          <a onClick={ this.prevPic } id="prev-select" className="link" style={{cursor: 'pointer'}}>prev pic</a>
+          <a href={ this.currentPost().url } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
+          <a href={ this.commentsLink() } className="link" target="_blank" rel="noopener noreferrer">comments</a>
+          <a onClick={ this.setNightmode } id="night-toggle" className="link" style={{cursor: 'pointer'}}>nightmode</a>
+        </div>
+        <a onClick={ this.nextPic }>
+          <img src={ this.currentPost().url } alt="img" style={{zIndex:-1}} />
         </a>
       </div>
     );
