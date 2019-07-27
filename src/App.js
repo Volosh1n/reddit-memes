@@ -56,7 +56,7 @@ class App extends Component {
     do {
       var random = Math.floor(Math.random() * this.state.posts.length);
       var post = this.state.posts[random].data;
-      if ((/jpg/.test(post.url)) || (/png/.test(post.url)))
+      if (post.url.match(/\.(jpeg|jpg|png)$/) != null)
         imageLink = post.url;
       else
         continue;
