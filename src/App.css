@@ -7,7 +7,7 @@
 .nightmode {
   --color-page-background: #202020;
   --color-font: white;
-  --img-opacity: .6;
+  --img-opacity: .7;
 }
 
 * {
@@ -32,10 +32,7 @@ img {
   max-width: 80%;
   top: 10%;
   left: 10%;
-  background-color: white;
-  padding: 2px;
-  box-shadow: 0 0 1vh black;
-  border-radius: 5px;
+  box-shadow: 0 0 3vh black;
   opacity: var(--img-opacity);
 }
 

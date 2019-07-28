@@ -50,8 +50,10 @@ class App extends Component {
   }
 
   prevPic() {
-    if(this.state.currentPostIndex - 1 >= 0)
+    if(this.state.currentPostIndex - 1 > 0)
       this.setState({ currentPostIndex: this.state.currentPostIndex - 1 });
+    else
+      this.setState({ currentPostIndex: this.state.posts.length - 1 });
   }
 
   currentPost() {

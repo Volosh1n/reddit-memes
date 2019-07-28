@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "http://volosh1n.github.io/reddit-memes",
   "dependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "1.1.4"
   },
   "scripts": {
@@ -17,6 +17,6 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.0"
+    "gh-pages": "^2.0.1"
   }
 }
