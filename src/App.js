@@ -85,7 +85,7 @@ class App extends Component {
           <a onClick={ this.setNightmode } id="night-toggle" className="link service-link">nightmode</a>
         </div>
         <a onClick={ this.nextPic }>
-          <img src={ this.currentPost().url } alt="img" style={{zIndex:-1}} />
+          <img src={ this.currentPost().url } alt={ this.currentPost().title } style={{zIndex:-1}} />
         </a>
       </div>
     );
