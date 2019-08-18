@@ -16,7 +16,7 @@ class App extends Component {
     this.commentsLink = this.commentsLink.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     SUBREDDITS.forEach(subreddit => {
       let url = 'https://www.reddit.com/r/' + subreddit + '.json?limit=100';
       fetch(url).then(res => res.json()).then(posts => {
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   prevPic() {
-    if(this.state.currentPostIndex - 1 > 0)
+    if(this.state.currentPostIndex - 1 >= 0)
       this.setState({ currentPostIndex: this.state.currentPostIndex - 1 });
     else
       this.setState({ currentPostIndex: this.state.posts.length - 1 });
