@@ -79,14 +79,14 @@ class App extends Component {
     return (
       <div>
         <div id="links">
-          <a onClick={ this.prevPic } id="prev-select" className="link service-link">prev pic</a>
+          <div onClick={ this.prevPic } id="prev-select" className="link service-link">prev pic</div>
           <a href={ this.currentPost().url } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
           <a href={ this.commentsLink() } className="link" target="_blank" rel="noopener noreferrer">comments</a>
-          <a onClick={ this.setNightmode } id="night-toggle" className="link service-link">nightmode</a>
+          <div onClick={ this.setNightmode } id="night-toggle" className="link service-link">nightmode</div>
         </div>
-        <a onClick={ this.nextPic }>
+        <div onClick={ this.nextPic }>
           <img src={ this.currentPost().url } alt={ this.currentPost().title } style={{zIndex:-1}} />
-        </a>
+        </div>
       </div>
     );
   }
