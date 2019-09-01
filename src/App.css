@@ -76,7 +76,7 @@ img:empty
   text-decoration: none;
   color: var(--color-font);
   background-color: gray;
-  padding: 5px;
+  padding: 10px;
   user-select: none;
 }
 
