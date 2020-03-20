@@ -1,13 +1,13 @@
 :root {
-  --color-page-background: #fafafa;
-  --color-font: black;
-  --img-opacity: 1;
-}
-
-.nightmode {
   --color-page-background: #202020;
   --color-font: white;
   --img-opacity: .7;
+}
+
+.daymode {
+  --color-page-background: #fafafa;
+  --color-font: black;
+  --img-opacity: 1;
 }
 
 * {

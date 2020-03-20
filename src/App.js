@@ -60,8 +60,8 @@ class App extends Component {
     return this.state.posts[this.state.currentPostIndex].data;
   }
 
-  setNightmode() {
-    document.body.classList.toggle('nightmode');
+  setDaymode() {
+    document.body.classList.toggle('daymode');
     if (document.getElementById('night-toggle').innerHTML === 'daymode')
       document.getElementById('night-toggle').innerHTML = 'nightmode';
     else
@@ -82,7 +82,7 @@ class App extends Component {
           <div onClick={ this.prevPic } id="prev-select" className="link service-link">prev pic</div>
           <a href={ this.currentPost().url } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
           <a href={ this.commentsLink() } className="link" target="_blank" rel="noopener noreferrer">comments</a>
-          <div onClick={ this.setNightmode } id="night-toggle" className="link service-link">nightmode</div>
+          <div onClick={ this.setDaymode } id="night-toggle" className="link service-link">daymode</div>
         </div>
         <div onClick={ this.nextPic }>
           <img src={ this.currentPost().url } alt={ this.currentPost().title } style={{zIndex:-1}} />
