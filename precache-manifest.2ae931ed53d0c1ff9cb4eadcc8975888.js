@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "968f17d70c56b523c8be6b40f890f0b8",
+    "revision": "48264a8b03e30acbd4b6984cc985272d",
     "url": "/reddit-memes/index.html"
   },
   {
-    "revision": "7baff4e222c8f386909e",
+    "revision": "4573f5f236f03285feb9",
     "url": "/reddit-memes/static/css/main.336ad29c.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reddit-memes/static/js/2.1d3c6df1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7baff4e222c8f386909e",
-    "url": "/reddit-memes/static/js/main.4ecc89d3.chunk.js"
+    "revision": "4573f5f236f03285feb9",
+    "url": "/reddit-memes/static/js/main.830ca29f.chunk.js"
   },
   {
     "revision": "f270a6cabf37203ead6f",
