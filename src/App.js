@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 
-const SUBREDDITS = ['memes', 'me_irl', 'dankmemes'];
+const SUBREDDITS = [
+  'memes',
+  'me_irl',
+  'dankmemes',
+  'BikiniBottomTwitter'
+]
 
 class App extends Component {
   constructor(props) {
