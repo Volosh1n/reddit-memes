@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/reddit-memes/static/css/main.06fc1556.chunk.css",
-    "main.js": "/reddit-memes/static/js/main.9847b97a.chunk.js",
-    "main.js.map": "/reddit-memes/static/js/main.9847b97a.chunk.js.map",
-    "runtime-main.js": "/reddit-memes/static/js/runtime-main.85d729d0.js",
-    "runtime-main.js.map": "/reddit-memes/static/js/runtime-main.85d729d0.js.map",
-    "static/js/2.1d3c6df1.chunk.js": "/reddit-memes/static/js/2.1d3c6df1.chunk.js",
-    "static/js/2.1d3c6df1.chunk.js.map": "/reddit-memes/static/js/2.1d3c6df1.chunk.js.map",
+    "main.css": "/reddit-memes/static/css/main.e31a2148.css",
+    "main.js": "/reddit-memes/static/js/main.df6b1a1c.js",
     "index.html": "/reddit-memes/index.html",
-    "precache-manifest.09cbebfb9ab0d6ac5d95555ce1ca599b.js": "/reddit-memes/precache-manifest.09cbebfb9ab0d6ac5d95555ce1ca599b.js",
-    "service-worker.js": "/reddit-memes/service-worker.js",
-    "static/css/main.06fc1556.chunk.css.map": "/reddit-memes/static/css/main.06fc1556.chunk.css.map",
-    "static/js/2.1d3c6df1.chunk.js.LICENSE.txt": "/reddit-memes/static/js/2.1d3c6df1.chunk.js.LICENSE.txt"
+    "main.e31a2148.css.map": "/reddit-memes/static/css/main.e31a2148.css.map",
+    "main.df6b1a1c.js.map": "/reddit-memes/static/js/main.df6b1a1c.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.85d729d0.js",
-    "static/js/2.1d3c6df1.chunk.js",
-    "static/css/main.06fc1556.chunk.css",
-    "static/js/main.9847b97a.chunk.js"
+    "static/css/main.e31a2148.css",
+    "static/js/main.df6b1a1c.js"
   ]
 }
