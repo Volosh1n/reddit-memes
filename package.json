@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "http://volosh1n.github.io/reddit-memes",
   "dependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0"
   },
   "scripts": {
