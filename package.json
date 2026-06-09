@@ -9,8 +9,10 @@
     "react-scripts": "^5.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PUBLIC_URL=/ react-scripts start",
     "build": "react-scripts build",
+    "preview:pages:prepare": "rm -rf .local-gh-pages && mkdir -p .local-gh-pages/reddit-memes && cp -R build/* .local-gh-pages/reddit-memes/",
+    "preview:pages": "npm run build && npm run preview:pages:prepare && cd .local-gh-pages && python3 -m http.server 4173",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
