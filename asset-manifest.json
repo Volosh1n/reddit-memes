@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/reddit-memes/static/css/main.e31a2148.css",
-    "main.js": "/reddit-memes/static/js/main.df6b1a1c.js",
+    "main.css": "/reddit-memes/static/css/main.b6a7a347.css",
+    "main.js": "/reddit-memes/static/js/main.d0eff733.js",
     "index.html": "/reddit-memes/index.html",
-    "main.e31a2148.css.map": "/reddit-memes/static/css/main.e31a2148.css.map",
-    "main.df6b1a1c.js.map": "/reddit-memes/static/js/main.df6b1a1c.js.map"
+    "main.b6a7a347.css.map": "/reddit-memes/static/css/main.b6a7a347.css.map",
+    "main.d0eff733.js.map": "/reddit-memes/static/js/main.d0eff733.js.map"
   },
   "entrypoints": [
-    "static/css/main.e31a2148.css",
-    "static/js/main.df6b1a1c.js"
+    "static/css/main.b6a7a347.css",
+    "static/js/main.d0eff733.js"
   ]
 }
