@@ -29,14 +29,6 @@ body {
   transform: translate(-50%, -50%);
 }
 
-h3 {
-  margin-top: 5px;
-  font-family: Arial;
-  text-align: center;
-  opacity: .5;
-  color: var(--color-font);
-}
-
 .viewer {
   position: fixed;
   top: 0;
