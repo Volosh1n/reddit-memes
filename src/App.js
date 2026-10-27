@@ -299,8 +299,7 @@ class App extends Component {
       return <div id="status">Could not load memes. Please refresh the page.</div>
     }
 
-    const viewportWidth = Math.max(window.innerWidth, 1)
-    const translateX = -viewportWidth + this.state.dragOffsetX - this.state.slideShift * viewportWidth
+    const translateX = 'calc(' + (-100 - this.state.slideShift * 100) + '% + ' + this.state.dragOffsetX + 'px)'
     const prevPost = this.relativePost(-1)
     const currentPost = this.relativePost(0)
     const nextPost = this.relativePost(1)
@@ -328,7 +327,7 @@ class App extends Component {
           <div
             className="carousel-track"
             style={{
-              transform: 'translate3d(' + translateX + 'px, 0, 0)',
+              transform: 'translate3d(' + translateX + ', 0, 0)',
               transition: this.state.isDragging || !this.state.isSlideAnimating ? 'none' : 'transform 220ms ease-out'
             }}
             onTransitionEnd={ this.handleSlideTransitionEnd }
