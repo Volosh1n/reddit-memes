@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 
 const MEME_API_BASE_URL = 'https://meme-api.com/gimme'
+const DAYMODE_STORAGE_KEY = 'isDaymode'
 const IMAGE_URL_RE = /\.(png|jpe?g|webp|gif)(\?.*)?$/i
 const SUBREDDIT_POOL = [
   'memes',
@@ -30,7 +31,7 @@ class App extends Component {
       isDragging: false,
       slideShift: 0,
       isSlideAnimating: false,
-      isDaymode: false
+      isDaymode: this.initialDaymode()
     }
     this.touchStartX = null
     this.touchStartY = null
@@ -46,6 +47,16 @@ class App extends Component {
     this.handleCurrentImageError = this.handleCurrentImageError.bind(this)
     this.toggleDaymode = this.toggleDaymode.bind(this)
     this.commentsLink = this.commentsLink.bind(this)
+  }
+
+  initialDaymode() {
+    try {
+      const saved = localStorage.getItem(DAYMODE_STORAGE_KEY)
+      if (saved !== null) return saved === 'true'
+    } catch (error) {
+      // storage can be blocked (e.g. private mode), fall back to the system preference
+    }
+    return window.matchMedia('(prefers-color-scheme: light)').matches
   }
 
   isImageUrl(url) {
@@ -68,6 +79,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    document.body.classList.toggle('daymode', this.state.isDaymode)
+
     const selectedSubreddits = this.pickRandomSubreddits(4)
     const cacheBuster = Date.now() + '-' + Math.random().toString(36).slice(2)
 
@@ -283,6 +296,11 @@ class App extends Component {
   toggleDaymode() {
     const isDaymode = !this.state.isDaymode
     document.body.classList.toggle('daymode', isDaymode)
+    try {
+      localStorage.setItem(DAYMODE_STORAGE_KEY, String(isDaymode))
+    } catch (error) {
+      // storage can be blocked, the toggle still works until reload
+    }
     this.setState({ isDaymode })
   }
 
