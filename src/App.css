@@ -107,3 +107,17 @@ h3 {
 .service-link {
   cursor: pointer;
 }
+
+/* both labels share one grid cell, so the button always keeps the width of the longer one */
+.toggle-labels {
+  display: inline-grid;
+}
+
+.toggle-labels span {
+  grid-area: 1 / 1;
+  transition: none;
+}
+
+.toggle-labels .hidden {
+  visibility: hidden;
+}

@@ -29,7 +29,8 @@ class App extends Component {
       dragOffsetX: 0,
       isDragging: false,
       slideShift: 0,
-      isSlideAnimating: false
+      isSlideAnimating: false,
+      isDaymode: false
     }
     this.touchStartX = null
     this.touchStartY = null
@@ -43,6 +44,7 @@ class App extends Component {
     this.handleTouchCancel = this.handleTouchCancel.bind(this)
     this.handleSlideTransitionEnd = this.handleSlideTransitionEnd.bind(this)
     this.handleCurrentImageError = this.handleCurrentImageError.bind(this)
+    this.toggleDaymode = this.toggleDaymode.bind(this)
     this.commentsLink = this.commentsLink.bind(this)
   }
 
@@ -279,11 +281,9 @@ class App extends Component {
   }
 
   toggleDaymode() {
-    document.body.classList.toggle('daymode')
-    if (document.getElementById('night-toggle').innerHTML === 'daymode')
-      document.getElementById('night-toggle').innerHTML = 'nightmode'
-    else
-      document.getElementById('night-toggle').innerHTML = 'daymode'
+    const isDaymode = !this.state.isDaymode
+    document.body.classList.toggle('daymode', isDaymode)
+    this.setState({ isDaymode })
   }
 
   commentsLink() {
@@ -311,7 +311,12 @@ class App extends Component {
           <div onClick={ this.prevPic } id="prev-select" className="link service-link">prev pic</div>
           <a href={ currentPost.url } className="link" target="_blank" rel="noopener noreferrer">direct link</a>
           <a href={ this.commentsLink() } className="link" target="_blank" rel="noopener noreferrer">comments</a>
-          <div onClick={ this.toggleDaymode } id="night-toggle" className="link service-link">daymode</div>
+          <div onClick={ this.toggleDaymode } id="night-toggle" className="link service-link">
+            <span className="toggle-labels">
+              <span className={ this.state.isDaymode ? 'hidden' : null }>daymode</span>
+              <span className={ this.state.isDaymode ? null : 'hidden' }>nightmode</span>
+            </span>
+          </div>
         </div>
         <div
           className="viewer"
